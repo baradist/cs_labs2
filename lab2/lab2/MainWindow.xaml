@@ -1,0 +1,47 @@
+﻿<Window x:Class="lab2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+        <DockPanel LastChildFill="True" >
+        <Menu Height="28" VerticalAlignment="Top" DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="menuItemRename" Header="Rename" Click="MenuItemRename_Click" />
+                <MenuItem Name="menuItemDelete" Header="Delete" Click="MenuItemDelete_Click" />
+                <MenuItem Name="menuItemFavourites" Header="Add to favourites" Click="MenuItemAddToFavourites_Click" />
+                <MenuItem Name="menuItemEdit" Header="Edit" Click="MenuItemEdit_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid Height="28" DockPanel.Dock="Bottom">
+            <Popup x:Name="zoomPopup" MouseLeave="zoomPopup_MouseLeave"
+                PlacementTarget="{Binding ElementName=zoomButton}" Placement="Center"
+                StaysOpen="False">
+                                <Grid Background="White">
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Slider Margin="20" Orientation="Vertical" x:Name="zoomSlider"
+                    Value="3"   Minimum="1" Maximum="10" Height="100"      
+                    ValueChanged="zoomSlider_ValueChanged"/>
+                    </Border>
+                </Grid>
+            </Popup>
+            <Button x:Name="zoomButton" Content="Zoom" HorizontalAlignment="Right" VerticalAlignment="Top" Click="ZoomButton_Click"/>
+            <Button x:Name="buttonRotateLeft" Content="Rotate left" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,116,0" Click="ButtonRotateLeft_Click"/>
+            <Button x:Name="buttonRotateRight" Content="Rotate right" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,42,0" Click="ButtonRotateRight_Click"/>
+        </Grid>
+        <TreeView x:Name="tree" Width="206" DockPanel.Dock="Left"/>
+
+        <ListBox x:Name="pictureBox" SelectionChanged="pictureBox_SelectionChanged"  
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </DockPanel>
+
+</Window>
